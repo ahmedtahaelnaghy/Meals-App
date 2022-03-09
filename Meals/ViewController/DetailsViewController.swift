@@ -9,7 +9,6 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
-    
     @IBOutlet weak var mealImg: UIImageView!
     
     @IBOutlet weak var mealName: UILabel!

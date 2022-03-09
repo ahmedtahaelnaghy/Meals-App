@@ -10,29 +10,43 @@ import UIKit
 
 class LocalDatabaseManager {
     
-    var mealArray: [Meals] = []
-    
-    func fetchData() -> [Meals] {
-        
-        let pizza = Meals(name: "Pizza", image: convertImageToData(img: UIImage(named: "1")!), price: 120)
-        let chesePizza = Meals(name: "Chese Pizza", image: convertImageToData(img: UIImage(named: "2")!), price: 135)
-        let burger = Meals(name: "Burger", image: convertImageToData(img: UIImage(named: "3")!), price: 85)
-        let cheseBurger = Meals(name: "Chese Burger", image: convertImageToData(img: UIImage(named: "4")!), price: 95)
-        let salad = Meals(name: "Salad", image: convertImageToData(img: UIImage(named: "5")!), price: 50)
-        let pasta = Meals(name: "Pasta", image: convertImageToData(img: UIImage(named: "6")!), price: 65)
-        let sandwich = Meals(name: "Sandwich", image: convertImageToData(img: UIImage(named: "7")!), price: 60)
-        
-        mealArray = [pizza, chesePizza, burger, cheseBurger, salad, pasta, sandwich]
-        
-        return mealArray
-        
-    }
+//    var mealArray: [Meals] = []
     
     func convertImageToData(img: UIImage) -> Data {
         
         let convertImage = img.pngData()!
         
         return convertImage
+        
+    }
+    
+    func saveToDatabase (mealsArray: [Meals]) {
+        
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        let archiveUrl = documentDirectory.appendingPathComponent("Meal_List").appendingPathExtension("plist")
+        
+        let propertyListEncoder = PropertyListEncoder()
+        
+        guard let encodedData = try? propertyListEncoder.encode(mealsArray) else { return }
+        
+        try? encodedData.write(to: archiveUrl, options: .noFileProtection)
+        
+    }
+    
+    func loadData() -> [Meals] {
+        
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        let archiveUrl = documentDirectory.appendingPathComponent("Meal_List").appendingPathExtension("plist")
+        
+        guard let retrieveData = try? Data(contentsOf: archiveUrl) else { return [] }
+        
+        let propertyListDecoder = PropertyListDecoder()
+        
+        guard let decodedArray = try? propertyListDecoder.decode([Meals].self, from: retrieveData) else { return [] }
+        
+        return decodedArray
         
     }
     

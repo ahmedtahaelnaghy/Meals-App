@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Meals {
+struct Meals: Codable {
     
     var name: String
     var image: Data

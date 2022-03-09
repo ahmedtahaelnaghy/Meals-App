@@ -22,9 +22,15 @@ class MealsTableViewController: UITableViewController, IaddNewMeal {
         super.viewDidLoad()
         
         localDatabaseManager = LocalDatabaseManager()
-        mealsArray = localDatabaseManager.fetchData()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        mealsArray = localDatabaseManager.loadData()
+        
+    }
+    
 
     // MARK: - Table view data source
 
@@ -70,6 +76,7 @@ class MealsTableViewController: UITableViewController, IaddNewMeal {
     func addNewMeal(meal: Meals) {
         
         mealsArray.append(meal)
+        localDatabaseManager.saveToDatabase(mealsArray: mealsArray)
         tableView.reloadData()
         
     }
