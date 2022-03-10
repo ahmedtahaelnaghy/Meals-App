@@ -9,9 +9,7 @@ import Foundation
 import UIKit
 
 class LocalDatabaseManager {
-    
-//    var mealArray: [Meals] = []
-    
+        
     func convertImageToData(img: UIImage) -> Data {
         
         let convertImage = img.pngData()!

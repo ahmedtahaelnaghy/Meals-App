@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddMealViewController: UIViewController {
+class AddMealViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     @IBOutlet weak var newMealImg: UIImageView!
@@ -18,17 +18,26 @@ class AddMealViewController: UIViewController {
     
     var delegate: IaddNewMeal?
     
+    var imagePicker: UIImagePickerController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        
+    }
+    
+    @IBAction func galleryBtn(_ sender: Any) {
+        
+        present(imagePicker, animated: true, completion: nil)
         
     }
     
     @IBAction func doneBtn(_ sender: Any) {
         
-//        let image = newMealImg.image!
-        
-        let image = UIImage(named: "3")!
+        guard let image = newMealImg.image else { return }
         let imageData = LocalDatabaseManager().convertImageToData(img: image)
         
         let name = newMealName.text!
@@ -37,6 +46,19 @@ class AddMealViewController: UIViewController {
         delegate?.addNewMeal(meal: Meals(name: name, image: imageData, price: price))
         
         self.navigationController?.popViewController(animated: true)
+        
+    }
+    
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let selectedImage = info[.originalImage] as? UIImage {
+            
+            newMealImg.image = selectedImage
+            
+        }
+        
+        dismiss(animated: true, completion: nil)
         
     }
     

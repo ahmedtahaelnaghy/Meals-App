@@ -30,7 +30,6 @@ class MealsTableViewController: UITableViewController, IaddNewMeal {
         mealsArray = localDatabaseManager.loadData()
         
     }
-    
 
     // MARK: - Table view data source
 
@@ -90,8 +89,6 @@ class MealsTableViewController: UITableViewController, IaddNewMeal {
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
-        
-        
         
     }
     

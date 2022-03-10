@@ -86,7 +86,7 @@
                                 <imageReference key="image" image="camera.fill" catalog="system" symbolScale="small"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="Gbd-gT-fKr">
-                                <rect key="frame" x="20" y="517" width="374" height="110"/>
+                                <rect key="frame" x="20" y="548" width="374" height="110"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="l0b-Ki-L5I">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="25"/>
@@ -125,16 +125,28 @@
                                     <constraint firstAttribute="height" constant="110" id="Srj-ig-m6e"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlU-yf-gcw">
+                                <rect key="frame" x="140" y="472" width="134" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Choose Gallery"/>
+                                <connections>
+                                    <action selector="galleryBtn:" destination="kd3-bT-AzQ" eventType="touchUpInside" id="sLL-Er-cgy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Nut-yu-0oh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Nut-yu-0oh" firstAttribute="trailing" secondItem="dlU-yf-gcw" secondAttribute="trailing" constant="140" id="4gb-SX-Y8y"/>
+                            <constraint firstItem="dlU-yf-gcw" firstAttribute="centerX" secondItem="7zj-6Y-fFj" secondAttribute="centerX" id="Ch7-55-0xt"/>
                             <constraint firstItem="QFb-rF-kAC" firstAttribute="top" secondItem="Nut-yu-0oh" secondAttribute="top" constant="30" id="DCj-mb-NMs"/>
                             <constraint firstItem="Nut-yu-0oh" firstAttribute="trailing" secondItem="QFb-rF-kAC" secondAttribute="trailing" constant="20" id="F9U-sS-rdB"/>
                             <constraint firstItem="Nut-yu-0oh" firstAttribute="trailing" secondItem="Gbd-gT-fKr" secondAttribute="trailing" constant="20" id="HGL-YX-Usb"/>
                             <constraint firstItem="Gbd-gT-fKr" firstAttribute="leading" secondItem="Nut-yu-0oh" secondAttribute="leading" constant="20" id="I5E-AF-ofh"/>
-                            <constraint firstItem="Gbd-gT-fKr" firstAttribute="top" secondItem="QFb-rF-kAC" secondAttribute="bottom" constant="80" id="Yas-An-y0i"/>
+                            <constraint firstItem="dlU-yf-gcw" firstAttribute="top" secondItem="QFb-rF-kAC" secondAttribute="bottom" constant="35" id="VgU-uN-Ztk"/>
                             <constraint firstItem="QFb-rF-kAC" firstAttribute="leading" secondItem="Nut-yu-0oh" secondAttribute="leading" constant="20" id="axV-MM-lff"/>
+                            <constraint firstItem="Gbd-gT-fKr" firstAttribute="top" secondItem="dlU-yf-gcw" secondAttribute="bottom" constant="45" id="fn4-G0-tOu"/>
+                            <constraint firstItem="dlU-yf-gcw" firstAttribute="leading" secondItem="Nut-yu-0oh" secondAttribute="leading" constant="140" id="hyv-rX-qt7"/>
                             <constraint firstItem="QFb-rF-kAC" firstAttribute="centerX" secondItem="7zj-6Y-fFj" secondAttribute="centerX" id="oE4-wt-5dM"/>
                             <constraint firstItem="Gbd-gT-fKr" firstAttribute="centerX" secondItem="7zj-6Y-fFj" secondAttribute="centerX" id="yZE-20-UZD"/>
                         </constraints>
